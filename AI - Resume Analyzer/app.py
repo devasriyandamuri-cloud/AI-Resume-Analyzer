@@ -4,7 +4,10 @@ import PyPDF2 as pdf
 import google.generativeai as genai
 import matplotlib.pyplot as plt
 import re
-GENAI_API_KEY = "AQ.Ab8RN6LY5MvTg0lERjVS3koduEaWxfdcy1CEKfGeQjq7mDWa1g"
+import os
+
+# ఇది .env ఫైల్ లేదా స్ట్రీమ్‌లిట్ సీక్రెట్స్ నుండి కీని సేఫ్ గా తీసుకుంటుంది
+GENAI_API_KEY = os.environ.get("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY", "")
 genai.configure(api_key=GENAI_API_KEY)
 
 def get_gemini_response(input_text, pdf_content, prompt):
