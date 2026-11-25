@@ -6,12 +6,11 @@ import matplotlib.pyplot as plt
 import re
 import os
 
-# ఇది .env ఫైల్ లేదా స్ట్రీమ్‌లిట్ సీక్రెట్స్ నుండి కీని సేఫ్ గా తీసుకుంటుంది
 GENAI_API_KEY = os.environ.get("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY", "")
 genai.configure(api_key=GENAI_API_KEY)
 
 def get_gemini_response(input_text, pdf_content, prompt):
-    # Ee model name 'gemini-2.5-flash' anni kotha python versions lo support chestundi
+
     model = genai.GenerativeModel('models/gemini-2.5-flash')
     response = model.generate_content([input_text, pdf_content, prompt])
     return response.text
